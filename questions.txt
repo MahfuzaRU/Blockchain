@@ -1,0 +1,7 @@
+1. Write a program in Python to create four new blocks in a blockchain. Traverse the blocks and print the values.
+2. Write a program in Python to implement PoW (Proof of Work) algorithm. 
+3. Write a program in Python to prove membership and non-membership in a Merkle Tree. 
+4. Write a Python program using a Merkle Tree to determine whether a given data block has been tampered with or not. 
+5. Write a Python program to ensure the confidentiality and authenticity of a message using encryption and digital signature.
+6. Write a Python program that takes a string and the desired number of leading zeros from the user and outputs the input string, 
+   the nonce value for which the leading zeros puzzle is solved,the corresponding hash generated.
