@@ -1,0 +1,122 @@
+akta folder a clone korbi
+
+
+git clone https://github.com/Hasin20108/HLF-Project-Asset-Transfer.git
+
+
+ai {prerequisites.md}  file a ja ja ache segulo korbi
+
+
+cd HFL-Project-Asset-Transfer/blockchain-network
+export PATH=$PATH:$PWD/bin
+peer version
+
+cd ..
+./check_prerequisites.sh
+
+cd blockchain-network/test-network
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+
+
+amader akhan theke lab exam a kora lagbe channel name r chaincode create kora lagbe agulo ai {commands.txt} file a pabi
+1. channel name 
+2. chaincode name
+jodi change korte bole tahole server.js er moddhe giye chain r chaincode change korte parbo
+
+
+./network.sh down
+./network.sh up createChannel -c assetchannel
+./network.sh deployCCAAS -ccn assetchaincode -ccp ../../chaincode -ccv 1 -ccl go -c assetchannel
+
+# task 1
+export PATH=${PWD}/../bin:$PATH
+export FABRIC_CFG_PATH=$PWD/../config/
+source ./scripts/envVar.sh
+setGlobals 1
+
+# task 2:  get all asset
+peer chaincode query -C assetchannel -n assetchaincode -c '{"Args":["GetAllAssets"]}'
+
+
+
++ new a giye new terminal open korbi then ai vabe path set korbi
+
+cd ..
+cd ..
+cd api-server
+
+node server.js
+
+
+
+akta localhost pabi seta open korbi diye chrome a open hoye jabe,, ai terminal a r kichu kora lagbe na,,, ager terminal a nicher kaj gulo korbi porpor
+
+
+
+
+# create new asset
+peer chaincode invoke -o localhost:7050 \
+  --ordererTLSHostnameOverride orderer.example.com \
+  --tls \
+  --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
+  -C assetchannel \
+  -n assetchaincode \
+  --peerAddresses localhost:7051 \
+  --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt \
+  --peerAddresses localhost:9051 \
+  --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt \
+  -c '{"function":"CreateAsset","Args":["asset2","Car","15000","Sakib"]}'
+
+
+ata por por 2 bar korbi run porer bar sudhu asset2 er jaigai asset1 dibi,,
+
+
+# 4. ReadAsset
+peer chaincode query -C assetchannel -n assetchaincode -c '{"Args":["ReadAsset","asset2"]}'
+
+# 5. UpdateAssetPrice
+peer chaincode invoke \
+    -o localhost:7050 \
+    --ordererTLSHostnameOverride orderer.example.com \
+    --tls \
+    --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
+    -C assetchannel \
+    -n assetchaincode \
+    --peerAddresses localhost:7051 \
+    --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt \
+    --peerAddresses localhost:9051 \
+    --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt \
+    -c '{"function":"UpdateAssetPrice","Args":["asset2","15500"]}'
+
+# 6. TransferAsset
+peer chaincode invoke \
+    -o localhost:7050 \
+    --ordererTLSHostnameOverride orderer.example.com \
+    --tls \
+    --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
+    -C assetchannel \
+    -n assetchaincode \
+    --peerAddresses localhost:7051 \
+    --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt \
+    --peerAddresses localhost:9051 \
+    --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt \
+    -c '{"function":"TransferAsset","Args":["asset2","komol"]}'
+
+# 7. GetAssetHistory
+peer chaincode query -C assetchannel -n assetchaincode -c '{"Args":["GetAssetHistory","asset2"]}'
+
+peer channel list
+peer lifecycle chaincode queryinstalled
+
+docker ps --format table{{.Names}}
+
+
+nicher ta r dorkar nai apatoto
+
+
+========== new channel creation
+./network.sh up createChannel -c channel2
